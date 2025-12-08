@@ -1,173 +1,393 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>DriveX</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveX HR Consultancy - Professional Career Growth</title>
+    <!-- Load Tailwind CSS and Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- =============================== 2. CSS STYLES (Inline & Tailwind Config) =============================== -->
+    <style>
+        /* Base styles and custom neon background effect */
+        :root {
+            --neon-blue: 60, 150, 255; /* RGB for a strong blue */
+            --neon-purple: 180, 80, 255; /* RGB for a strong purple */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Hero section background with neon/corporate theme */
+        .hero-background {
+            /* Abstract geometric pattern overlay */
+            background-image: 
+                radial-gradient(circle at 10% 50%, rgba(var(--neon-blue), 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(var(--neon-purple), 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+            background-size: 100% 100%;
+            background-position: center;
+        }
+
+        /* Dark Mode Specific Styles */
+        .dark .hero-background {
+            background-color: #0d111b; /* Darker primary background */
+            background-image: 
+                radial-gradient(circle at 10% 50%, rgba(var(--neon-blue), 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(var(--neon-purple), 0.25) 0%, transparent 50%);
+        }
+
+        /* Subtle scroll animation effect */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom button styling */
+        .neon-button {
+            box-shadow: 0 0 10px rgba(var(--neon-blue), 0.5), 0 0 20px rgba(var(--neon-purple), 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .neon-button:hover {
+            box-shadow: 0 0 15px rgba(var(--neon-blue), 0.8), 0 0 30px rgba(var(--neon-purple), 0.8);
+            transform: translateY(-2px);
+        }
+    </style>
+    <script>
+        // Tailwind Configuration (part of styling setup)
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': 'rgb(60, 150, 255)',
+                        'primary-purple': 'rgb(180, 80, 255)',
+                        'dark-bg': '#0d111b',
+                        'light-bg': '#f7f8f9',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <!-- Loading splash shown briefly on page load -->
-  <div id="loading-screen" class="loading-screen" role="status" aria-live="polite">
-    <div class="loading-inner">
-      <h1 class="loading-title">
-        <span class="greeting">Hi — welcome to</span>
-  <span class="brand">DriveX</span>
-      </h1>
-      <p class="loading-sub muted small">Connecting leaders with opportunities</p>
-    </div>
-  </div>
-  <header class="site-header">
-    <div class="container header-grid">
-      <div class="brand">
-  <h1>DriveX</h1>
-  <p class="tag">Strategic People Solutions — Executive Hiring & HR Advisory</p>
-      </div>
-      <nav class="nav">
-        <button class="nav-toggle" aria-label="toggle navigation">☰</button>
-        <ul class="nav-list">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#process">Our Process</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <h2>We find the leaders who build the future.</h2>
-          <p class="lead">Premium executive search, leadership assessment, and tailored HR consulting for fast-growing organisations.</p>
-          <div class="hero-cta">
-            <a class="btn btn-primary shimmer" href="#contact">Get in touch</a>
-            <a class="btn btn-ghost" href="#services">Our Services</a>
-          </div>
-        </div>
-        <div class="hero-image" aria-hidden="true">
-          <div class="card floating" data-depth="12">
-            <div class="card-inner">
-              <h3>Trusted by Growth Teams</h3>
-              <p>Placement success rate: <strong>90%</strong></p>
-              <p>Average hire time: <strong>30 days</strong></p>
+<!-- =============================== 1. HTML STRUCTURE =============================== -->
+<body class="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-100 min-h-screen">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-sm shadow-md transition-colors duration-300">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-extrabold text-primary-blue dark:text-primary-purple transition-colors duration-300">
+                DriveX
+                <span class="text-base font-normal text-gray-500">HR Consultancy</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex space-x-6">
+                    <a href="#about" class="hover:text-primary-blue dark:hover:text-primary-purple transition-colors duration-200">About</a>
+                    <a href="#services" class="hover:text-primary-blue dark:hover:text-primary-purple transition-colors duration-200">Services</a>
+                    <a href="#resume" class="hover:text-primary-blue dark:hover:text-primary-purple transition-colors duration-200">Upload CV</a>
+                    <a href="#contact" class="hover:text-primary-blue dark:hover:text-primary-purple transition-colors duration-200">Contact</a>
+                </div>
+                <!-- Dark Mode Toggle -->
+                <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300" aria-label="Toggle Dark Mode">
+                    <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </nav>
+    </header>
 
-  <section id="services" class="section services">
-      <div class="container">
-        <h3 class="section-title">Premium HR Services</h3>
-        <p class="section-sub">End-to-end HR advisory and talent solutions, customised to your business.</p>
-    <div class="services-grid">
-          <article class="service">
-            <h4>Executive Search</h4>
-            <p>Confidential search for senior leaders across functions with rigorous vetting and market mapping.</p>
-          </article>
-          <article class="service">
-            <h4>HR Strategy & Design</h4>
-            <p>People strategy, org design, compensation frameworks and HR operating models aligned to growth goals.</p>
-          </article>
-          <article class="service">
-            <h4>Leadership Assessment</h4>
-            <p>Behavioural and capability assessments, interview guides, and leadership development plans.</p>
-          </article>
-          <article class="service">
-            <h4>Talent Advisory</h4>
-            <p>Hiring process optimisation, employer branding, and retention strategies.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="process" class="section process">
-      <div class="container">
-        <h3 class="section-title">Our Process</h3>
-        <ol class="process-list">
-          <li><strong>Consult</strong> — Understand goals and KPIs.</li>
-          <li><strong>Map</strong> — Market research and candidate pipelines.</li>
-          <li><strong>Assess</strong> — Structured interviews and assessments.</li>
-          <li><strong>Deliver</strong> — Offer support and onboarding guidance.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="testimonials" class="section testimonials">
-      <div class="container">
-        <h3 class="section-title">What clients say</h3>
-        <div class="testimonials-grid">
-          <blockquote class="testimonial">
-            <p>"DriveX helped us hire our candidates within a month. Exceptional market knowledge and process."</p>
-            <cite>- Priya R, CTO</cite>
-          </blockquote>
-          <blockquote class="testimonial">
-            <p>"High professionalism and great candidate fit. Their assessments saved us time in hiring."</p>
-            <cite>- Akash M, Founder</cite>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact">
-      <div class="container contact-grid">
-        <div class="contact-info">
-          <h3 class="section-title">Let's talk</h3>
-          <p>For enquiries, partnerships, or a confidential conversation, get in touch.</p>
-          <ul class="contact-list">
-            <li><strong>Email:</strong> devag@devanghrconsultancy.in</li>
-            <li><strong>Phone:</strong> +91 9324271916</li>
-            <li><strong>Location:</strong> Mumbai, India</li>
-          </ul>
-        </div>
-
-        <div class="contact-form">
-          <h4>Request a consultation</h4>
-          <p class="muted">Submit your details and we'll reach out within 48 hours.</p>
-
-
-          <p class="muted small">Or use the quick contact form below.</p>
-
-          <form id="quickForm">
-            <div class="row">
-              <input name="name" placeholder="Full name" required>
-              <input name="email" type="email" placeholder="Email" required>
+    <main>
+        <!-- 1. Hero / Landing Section -->
+        <section id="home" class="hero-background min-h-[80vh] flex items-center py-20 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center fade-in">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-blue to-primary-purple">
+                        Powering Professional Careers
+                    </span>
+                </h1>
+                <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto">
+                    We connect top-tier talent with ambitious companies, specializing in high-impact professional job placements and strategic career growth consultancy.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#resume" class="neon-button px-8 py-3 rounded-full text-white font-semibold bg-primary-blue hover:bg-primary-purple transition-all duration-300">
+                        Find Your Next Role
+                    </a>
+                    <a href="#about" class="px-8 py-3 rounded-full font-semibold border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
+                        Learn More
+                    </a>
+                </div>
             </div>
-            <div class="row">
-              <input name="company" placeholder="Company / Organization">
-              <input name="phone" placeholder="Phone">
-            </div>
-            <textarea name="message" placeholder="Brief message" rows="4"></textarea>
+        </section>
 
-            <label for="cv" class="muted small" style="display:block;margin-bottom:.5rem">Upload CV (PDF / DOC / DOCX) — optional</label>
-            <input id="cv" name="cv" type="file" accept=".pdf,.doc,.docx" style="margin-bottom:.75rem">
-
-            <div class="form-actions">
-              <button class="btn btn-primary" type="submit">Send request</button>
+        <!-- 2. About Section -->
+        <section id="about" class="py-20 bg-white dark:bg-dark-bg transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in">
+                        <h2 class="text-4xl font-bold mb-4">
+                            Your Partner in <span class="text-primary-blue dark:text-primary-purple">Career Acceleration</span>
+                        </h2>
+                        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                            DriveX is more than just a recruiting agency; we are a dedicated HR consultancy focused on long-term professional development. We understand the nuances of corporate environments and specialize in placing experienced individuals in roles where they can truly excel and make a significant impact.
+                        </p>
+                        <ul class="space-y-3 text-gray-700 dark:text-gray-200">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-primary-blue dark:text-primary-purple mr-3 flex-shrink-0 mt-1"></i>
+                                Strategic placement for sustained career growth.
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-primary-blue dark:text-primary-purple mr-3 flex-shrink-0 mt-1"></i>
+                                Focused on professional, mid-to-senior level roles.
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-primary-blue dark:text-primary-purple mr-3 flex-shrink-0 mt-1"></i>
+                                Tailored consultancy for both candidates and employers.
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Mock Corporate Image Placeholder with Neon Vibe -->
+                    <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-primary-blue/30 dark:border-primary-purple/40 relative overflow-hidden fade-in">
+                        <div class="absolute inset-0 opacity-20 dark:opacity-30" style="background: radial-gradient(circle at 100% 0%, rgba(var(--neon-blue), 0.5), transparent 70%);"></div>
+                        <i data-lucide="briefcase" class="w-16 h-16 text-primary-blue/50 dark:text-primary-purple/50 mb-4"></i>
+                        <p class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                            Connecting Visionary Talent with Leading Organizations.
+                        </p>
+                        <span class="block mt-4 text-sm text-gray-500 dark:text-gray-400">DriveX HR Solutions</span>
+                    </div>
+                </div>
             </div>
-            <p id="formStatus" class="muted small" aria-live="polite"></p>
-          </form>
+        </section>
+
+        <!-- 3. Services / Why Choose Us Section -->
+        <section id="services" class="py-20 bg-gray-50 dark:bg-dark-bg/80 transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4 fade-in">
+                    Our <span class="text-primary-blue dark:text-primary-purple">Core Services</span>
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto fade-in">
+                    We provide comprehensive solutions to meet the demands of the modern professional job market.
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Service 1: Professional Placement -->
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border-t-4 border-primary-blue dark:border-primary-purple hover:shadow-xl transition-all duration-300 fade-in">
+                        <i data-lucide="users" class="w-8 h-8 text-primary-blue dark:text-primary-purple mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-3">Elite Job Placement</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            Connecting seasoned professionals with high-growth companies that value their expertise.
+                        </p>
+                    </div>
+
+                    <!-- Service 2: Career Consultancy -->
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border-t-4 border-primary-blue dark:border-primary-purple hover:shadow-xl transition-all duration-300 fade-in" style="transition-delay: 0.1s;">
+                        <i data-lucide="trending-up" class="w-8 h-8 text-primary-blue dark:text-primary-purple mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-3">Strategic Career Planning</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            Personalized guidance to help employees map out and achieve their long-term career aspirations.
+                        </p>
+                    </div>
+
+                    <!-- Service 3: Employer Solutions -->
+                    <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border-t-4 border-primary-blue dark:border-primary-purple hover:shadow-xl transition-all duration-300 fade-in" style="transition-delay: 0.2s;">
+                        <i data-lucide="building" class="w-8 h-8 text-primary-blue dark:text-primary-purple mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-3">Talent Acquisition for Firms</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            Consulting services for companies to attract, vet, and retain professional employees.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Resume Upload / Contact Section -->
+        <section id="resume" class="py-20 bg-white dark:bg-dark-bg transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <div class="text-center mb-10 fade-in">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-2">
+                        Upload Your <span class="text-primary-blue dark:text-primary-purple">Resume</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">
+                        Take the first step towards a new career opportunity.
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-900 p-6 sm:p-10 rounded-xl shadow-2xl fade-in" style="transition-delay: 0.1s;">
+                    <form id="resume-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2">Full Name</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full p-3 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 focus:ring-primary-blue focus:border-primary-blue">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full p-3 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 focus:ring-primary-blue focus:border-primary-blue">
+                        </div>
+                        <div>
+                            <label for="role" class="block text-sm font-medium mb-2">Target Role/Industry</label>
+                            <input type="text" id="role" name="role" required
+                                class="w-full p-3 border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-700 focus:ring-primary-blue focus:border-primary-blue">
+                        </div>
+                        
+                        <!-- File Input (for user guidance only, not for submission) -->
+                        <div>
+                            <label for="resume-file" class="block text-sm font-medium mb-2">Select Your Resume (PDF/DOCX)</label>
+                            <input type="file" id="resume-file" name="resume-file" accept=".pdf,.doc,.docx" disabled
+                                class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-blue/10 file:text-primary-blue dark:file:bg-primary-purple/20 dark:file:text-primary-purple cursor-not-allowed">
+                            <p class="mt-2 text-xs text-red-500">
+                                NOTE: The file is disabled because the website cannot upload it directly. After submitting, you must manually attach your file in your email client!
+                            </p>
+                        </div>
+                        
+                        <button type="submit" class="w-full neon-button px-8 py-3 rounded-lg text-white font-semibold bg-primary-blue hover:bg-primary-purple transition-all duration-300 mt-4">
+                            Submit Details & Open Email Client
+                        </button>
+                        
+                        <!-- Submission Status Message -->
+                        <p id="submission-message" class="text-center pt-4 font-medium text-sm text-gray-700 dark:text-gray-400"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 5. General Contact Info (Footer Reference) -->
+        <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl text-center">
+                <h2 class="text-3xl font-bold mb-6 fade-in">Get In Touch</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-gray-600 dark:text-gray-300">
+                    <!-- Location -->
+                    <div class="fade-in">
+                        <i data-lucide="map-pin" class="w-6 h-6 mx-auto mb-2 text-primary-blue dark:text-primary-purple"></i>
+                        <h3 class="font-semibold text-lg mb-1">Office Location</h3>
+                        <p>Global Consultancy Hub, Remote Operations</p>
+                    </div>
+                    <!-- Email -->
+                    <div class="fade-in" style="transition-delay: 0.1s;">
+                        <i data-lucide="mail" class="w-6 h-6 mx-auto mb-2 text-primary-blue dark:text-primary-purple"></i>
+                        <h3 class="font-semibold text-lg mb-1">General Inquiries</h3>
+                        <a href="mailto:info@drivexhr.com" class="hover:underline">info@drivexhr.com</a>
+                    </div>
+                    <!-- Phone -->
+                    <div class="fade-in" style="transition-delay: 0.2s;">
+                        <i data-lucide="phone" class="w-6 h-6 mx-auto mb-2 text-primary-blue dark:text-primary-purple"></i>
+                        <h3 class="font-semibold text-lg mb-1">Call Us</h3>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-800 dark:bg-black text-gray-400 dark:text-gray-500 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 DriveX HR Consultancy. All rights reserved.</p>
         </div>
-      </div>
-    </section>
+    </footer>
 
-  </main>
+    <!-- =============================== 3. JAVASCRIPT LOGIC =============================== -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-  <p>&copy; <span id="year"></span> DriveX — All rights reserved.</p>
-      <div class="social">
-        <a href="#">LinkedIn</a>
-        <a href="#">Twitter</a>
-      </div>
-    </div>
-  </footer>
+        // 1. Dark Mode Implementation
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const htmlElement = document.documentElement;
 
-  <script src="js/script.js"></script>
+        // Check for saved theme preference or default to system preference
+        const isDarkMode = localStorage.getItem('theme') === 'dark' || 
+                           (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+        if (isDarkMode) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            // Re-render icons to match the new mode
+            lucide.createIcons();
+        });
+
+        // 2. Resume Submission Logic (using mailto)
+        document.getElementById('resume-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get values from form inputs
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const role = document.getElementById('role').value;
+            
+            // Recipient email specified by the user
+            const recipient = 'rathodabhinav5@gmail.com'; 
+            const subject = `New Professional CV Submission: ${name}`;
+            
+            // Construct the email body
+            const body = `Dear DriveX HR Team,\n\nI am submitting my resume for consideration in professional roles.\n\nName: ${name}\nEmail: ${email}\nTarget Role/Industry: ${role}\n\n--- IMPORTANT ---\nPlease ensure you manually attach your CV/Resume file (PDF/DOCX) to this email before sending.\nThank you.`;
+
+            // Create the mailto link
+            const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            // Redirect the user, opening their default email client
+            window.location.href = mailtoLink;
+
+            // Display success/instruction message to the user
+            const messageElement = document.getElementById('submission-message');
+            messageElement.innerHTML = '<span class="text-green-600 dark:text-green-400 font-bold">Email client opened!</span> Please <span class="text-red-500">manually attach your CV file</span> and click Send.';
+        });
+
+        // 3. Scroll-based Fade-In Animation (Intersection Observer)
+        const faders = document.querySelectorAll('.fade-in');
+
+        const appearOptions = {
+            threshold: 0.1, // Element is 10% visible
+            rootMargin: "0px 0px -50px 0px" // Start appearing when 50px from bottom
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+                entry.target.classList.add('appear');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // 4. Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
